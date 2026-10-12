@@ -1,0 +1,659 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    padding-bottom: 340px; /* Incrementamos el colchón inferior por el nuevo tamaño del carrito */
+}
+
+
+.header {
+    background-color: #e43f5a;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.menu-container {
+    max-width: 600px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.product-img {
+    width: 110px;
+    height: 100%;
+    min-height: 140px;
+    object-fit: cover;
+    background-color: #eee;
+}
+
+.product-info {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.product-info h3 {
+    font-size: 1.05rem;
+    color: #1b1b2f;
+}
+
+.description {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0.25rem 0;
+}
+
+.product-variants {
+    margin: 0.5rem 0;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    background: #fdfdfd;
+    padding: 0.4rem;
+    border-radius: 6px;
+    border: 1px dashed #ddd;
+}
+
+.variant-title {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 0.1rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    color: #444;
+}
+
+.variant-checkbox {
+    accent-color: #e43f5a;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+}
+
+.product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.price {
+    font-weight: bold;
+    color: #e43f5a;
+}
+
+.btn-add {
+    background-color: #e43f5a;
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-add:active {
+    transform: scale(0.95);
+}
+
+/* --- ESTILOS OPTIMIZADOS PARA EL CARRITO --- */
+.cart-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
+    border-radius: 16px 16px 0 0;
+    max-width: 600px;
+    margin: 0 auto;
+    z-index: 1000;
+}
+
+.cart-summary {
+    padding: 1rem;
+}
+
+.cart-items-list {
+    max-height: 220px; /* Aumentamos la altura para albergar más productos cómodamente */
+    overflow-y: auto;  /* Permite el deslizamiento vertical */
+    margin: 0.75rem 0;
+    font-size: 0.95rem;
+    padding-right: 5px; /* Espacio sutil para que la barra de scroll no encime el texto */
+    
+    /* Propiedades para forzar al navegador a dar prioridad al scroll interno */
+    -webkit-overflow-scrolling: touch; 
+    overscroll-behavior: contain; 
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+/* Contenedor de botones alineados */
+.cart-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+/* Botón de menos / bajar cantidad */
+.btn-qty-minus {
+    background-color: #ffeef0;
+    border: 1px solid #ffccd2;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e43f5a;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+	font-weight:bold;
+	line-height:1;
+}
+
+/* Botón de más / subir cantidad */
+.btn-qty-plus {
+    background-color: #e8f9ee;
+    border: 1px solid #c1f2d2;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #25d366;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+	font-weight:bold;
+	line-height:1;
+}
+
+.btn-qty-minus:active, .btn-qty-plus:active {
+    transform: scale(0.9);
+}
+
+.item-qty {
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+    font-size: 1.05rem;
+}
+
+.empty-message {
+    color: #999;
+    text-align: center;
+    font-style: italic;
+    padding: 1rem 0;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    padding-top: 0.5rem;
+    border-top: 1px solid #ddd;
+}
+
+.btn-whatsapp {
+    width: 100%;
+    background-color: #25d366;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-whatsapp:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* --- ESTILOS PARA EL FORMULARIO DE ENTREGA --- */
+.customer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: #e43f5a;
+}
+
+.delivery-options {
+    display: flex;
+    gap: 1rem;
+    padding: 0.2rem 0;
+    font-size: 0.9rem;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+    color: #444;
+}
+
+.radio-label input {
+    accent-color: #e43f5a;
+}
+
+/* Oculta el campo de dirección cuando no se necesita */
+.hidden-field {
+    display: none;
+}
+
+.cart-header {
+    background-color: #1b1b2f;
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.cart-body {
+    display: none;
+    padding: 1rem;
+}
+
+/* Clase que se activará con JavaScript para mostrarlo */
+.cart-body.open {
+    display: block;
+}
+
+.cart-items-list {
+    max-height: 180px;
+    overflow-y: auto;
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+    padding-right: 5px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.cart-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.btn-qty-minus {
+    background-color: #ffeef0;
+    border: 1px solid #ffccd2;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e43f5a;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.btn-qty-plus {
+    background-color: #e8f9ee;
+    border: 1px solid #c1f2d2;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #25d366;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.item-qty {
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+    font-size: 1.05rem;
+}
+
+.empty-message {
+    color: #999;
+    text-align: center;
+    font-style: italic;
+    padding: 0.5rem 0;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    padding-top: 0.5rem;
+    border-top: 1px solid #ddd;
+}
+
+.btn-whatsapp {
+    width: 100%;
+    background-color: #25d366;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-whatsapp:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Espacio en el fondo para que los productos finales no queden tapados por la barra del header */
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    padding-bottom: 80px; 
+}
+/* --- ESTILOS DE LA VENTANA EMERGENTE (TICKET) --- */
+.modal-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro semitransparente */
+    z-index: 2000; /* Por encima de todo, incluido el carrito */
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* Activa la visualización de la modal */
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal-content {
+    background-color: white;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    overflow: hidden;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    background-color: #1b1b2f;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.modal-header h2 {
+    font-size: 1.2rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+/* Estilos del ticket simulado */
+.ticket-container {
+    font-family: 'Courier New', Courier, monospace; /* Tipografía estilo ticket de caja */
+    background-color: #fdfdfd;
+    border: 1px dashed #ccc;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.ticket-line {
+    border-bottom: 1px dashed #ddd;
+    margin: 0.5rem 0;
+}
+
+.ticket-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+}
+
+.modal-footer {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid #eee;
+}
+
+/* Botones de acción del ticket */
+.btn-modal-edit {
+    flex: 1;
+    background-color: #666;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-modal-send {
+    flex: 1;
+    background-color: #25d366;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-modal-edit:active, .btn-modal-send:active {
+    transform: scale(0.98);
+}
+
+/* Archivo CSS: Agregar al final del documento */
+.payment-section {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 2px dashed #ddd;
+}
+
+.payment-section h3 {
+    font-size: 1.1rem;
+    color: #1b1b2f;
+    margin-bottom: 0.8rem;
+}
+
+.payment-options {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.payment-dynamic-field {
+    margin-top: 1rem;
+    background: #f8f9fa;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.field-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 0.4rem;
+}
+
+.account-info {
+    font-size: 0.9rem;
+    background: #e8f9ee;
+    color: #155724;
+    padding: 0.8rem;
+    border-radius: 6px;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+    border: 1px solid #c3e6cb;
+}
+
+.success-text {
+    color: #28a745;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.admin-title {
+    margin-top: 0;
+    color: #1b1b2f;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+.mode-selection {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+}
+.general-time-block {
+    background: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    margin-bottom: 15px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.day-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+}
+.day-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.9rem;
+}
+.day-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #e43f5a;
+}
+.specific-times {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.btn-save-config {
+    background: #25d366;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-save-config:hover {
+    background: #1ebd55;
+}
+.hidden {
+    display: none !important;
+}

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Digital Interactivo</title>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="header">
+    <h1>Nuestro Menú</h1>
+    <p>Elige tus platillos favoritos y ordena por WhatsApp</p>
+</header>
+
+<main class="menu-container">
+
+    <!-- Platillo 1 -->
+    <div class="product-card" data-id="1" data-name="Hamburguesa" data-price="0">
+        <img src="images/hamburguesa.jpg" alt="Hamburguesa" class="product-img">
+        <div class="product-info">
+            <h3>Hamburguesa</h3>
+            <p class="description">Carne de res, queso, lechuga, tomate y aderezo especial de la casa.</p>
+            <div class="product-variants">
+                <p class="variant-title">Seleccione su hamburguesa:</p>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Clasica" data-extra="90"> Clasica ($90)
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Doble Carne" data-extra="125"> Doble Carne ($125)
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Con Tocino" data-extra="110"> Con Tocino ($110)
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Extra Queso" data-extra="105"> Extra Queso ($105)
+                </label>
+            </div>
+            <div class="product-meta">
+                <span class="price">Desde $90.00</span>
+                <button class="btn-add">Agregar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Platillo 2 -->
+    <div class="product-card" data-id="2" data-name="Papas Fritas" data-price="0">
+        <img src="images/papas.jpg" alt="Papas Fritas" class="product-img">
+        <div class="product-info">
+            <h3>Papas Fritas</h3>
+            <p class="description">Porción individual de papas crujientes sazonadas con sal marina.</p>
+            <div class="product-variants">
+                <p class="variant-title">Seleccione sus papas:</p>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Naturales" data-extra="40"> Naturales ($40)
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Con Queso" data-extra="55"> Con Queso ($55)
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Con Tocino" data-extra="60"> Con Tocino ($60)
+                </label>
+            </div>
+            <div class="product-meta">
+                <span class="price">Desde $40.00</span>
+                <button class="btn-add">Agregar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Platillo 3 -->
+    <div class="product-card" data-id="3" data-name="Refresco" data-price="0">
+        <img src="images/refresco.jpg" alt="Refresco" class="product-img">
+        <div class="product-info">
+            <h3>Refresco</h3>
+            <p class="description">Variedad de sabores bien fríos para acompañar tu comida.</p>
+            <div class="product-variants">
+                <p class="variant-title">Opciones:</p>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Regular" data-extra="30"> Regular ($30)
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Sabor uva" data-extra="30"> Sabor uva ($30)
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Sabor manzana" data-extra="30"> Sabor manzana ($30)
+                </label>
+            </div>
+            <div class="product-meta">
+                <span class="price">$30.00</span>
+                <button class="btn-add">Agregar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Platillo 4-->
+    <div class="product-card" data-id="4" data-name="Boneless" data-price="0">
+        <img src="images/boneless.png" alt="Boneless" class="product-img">
+        <div class="product-info">
+            <h3>Boneless</h3>
+            <p class="description">Ricas con el sazón tradicional.</p>
+            <div class="product-variants">
+                <p class="variant-title">Elige tus Boneless :</p>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Naturales" data-extra="40"> Naturales ($40)
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Buffalo" data-extra="40"> Buffalo ($40)
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="BBQ" data-extra="40"> BBQ ($40)
+                </label>
+            </div>
+            <div class="product-meta">
+                <span class="price">$40.00</span>
+                <button class="btn-add">Agregar</button>
+            </div>
+        </div>
+    </div>
+
+        <!-- NUEVA SECCIÓN INDEPENDIENTE: Salsas Extras -->
+    <div class="product-card" data-id="5" data-name="Extras" data-price="0">
+        <img src="images/boneless.png" alt="Salsas" class="product-img">
+        <div class="product-info">
+            <h3>Extras</h3>
+            <p class="description">Agrega mas sabor a tu pedido.</p>
+            <div class="product-variants">
+                <p class="variant-title">Opciones disponibles:</p>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Salsa extra Buffalo" data-extra="10"> Salsa extra Buffalo (+$10)
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Salsa extra BBQ" data-extra="10"> Salsa extra BBQ (+$10)
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="variant-checkbox" value="Cubos de hielo" data-extra="10"> Cubos de hielo (+$10)
+                </label>
+            </div>
+            <div class="product-meta">
+                <span class="price">Desde $10.00</span>
+                <button class="btn-add">Agregar</button>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- Sección del Carrito de Compras Colapsable -->
+<section id="cart-section" class="cart-section">
+    <div class="cart-header" onclick="toggleCart()">
+        <span>Tu Pedido (<span id="cart-count">0</span>)</span>
+        <span id="cart-toggle-icon">▲</span>
+    </div>
+    <div id="cart-body" class="cart-body">
+        <div class="customer-form">
+            <input type="text" id="cust-name" placeholder="Tu Nombre completo" class="form-input">
+            <div class="delivery-options">
+                <label class="radio-label">
+                    <input type="radio" name="delivery-method" value="Recoger" checked onchange="toggleAddressField()"> Recoger en tienda
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="delivery-method" value="Domicilio" onchange="toggleAddressField()"> A domicilio
+                </label>
+            </div>
+            <input type="text" id="cust-address" placeholder="Dirección de entrega (Calle, Número, Colonia)" class="form-input hidden-field">
+        </div>
+        <div id="cart-items" class="cart-items-list">
+            <p class="empty-message">El carrito está vacío</p>
+        </div>
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="total-amount">$0.00</span>
+        </div>
+        <button id="btn-whatsapp" class="btn-whatsapp" disabled>Verificar y enviar</button>
+    </div>
+</section>
+
+<script src="js/app.js"></script>
+
+<div id="ticket-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Confirmación de Pedido</h2>
+        </div>
+        <div class="modal-body">
+            <!-- Detalles del ticket -->
+            <div id="ticket-details"></div>
+            
+            <!-- Opciones de Pago -->
+            <div class="payment-section">
+                <h3>Método de Pago</h3>
+                <div class="payment-options">
+                    <label class="radio-label">
+                        <input type="radio" name="payment-method" value="Efectivo" checked onchange="togglePaymentFields()"> Efectivo
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="payment-method" value="Transferencia" onchange="togglePaymentFields()"> Transferencia
+                    </label>
+                </div>
+                
+                <!-- Campo dinámico para Efectivo -->
+                <div id="cash-field" class="payment-dynamic-field">
+                    <label for="cash-amount" class="field-label">¿Con cuánto vas a pagar? (Para llevarte cambio): </label>
+                    <input type="number" id="cash-amount" class="form-input" placeholder="Ej: 200, 500">
+                </div>
+                
+                <!-- Campo dinámico para Transferencia -->
+                <div id="transfer-field" class="payment-dynamic-field hidden-field">
+                    <p class="account-info">
+                        <strong>Cuenta para transferencia:</strong><br>
+                        Banco XYZ<br>
+                        Clabe: 0123 4567 8901 2345<br>
+                        Titular: Mi Restaurante S.A.
+                    </p>
+                    <p style="font-size: 0.85rem; color: #555; margin-top: 0.5rem; font-style: italic;">
+                        Realiza tu pago y al enviar el pedido por WhatsApp, adjunta la captura de pantalla de tu transferencia.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button onclick="closeTicketModal()" class="btn-modal-edit">Seguir editando</button>
+            <button onclick="confirmAndSendWhatsApp()" class="btn-modal-send">Confirmar y Enviar</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
